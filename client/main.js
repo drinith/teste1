@@ -19,14 +19,38 @@ Template.calcula.events({
         let a = template.find('#a').value;
         let b = template.find('#b').value;
         let c = template.find('#c').value;
-        
+    
+
         //Chamada da função que vai resolver a equação
         resolve(a,b,c);
     } 
 });
 
-
+//Função que resolve a equação de segundo grau
 var resolve = function(a,b,c){
 
-    Session.set("resultado", "Resolver é com vocês :) !!!!!!");
+
+    var delta = b*b - 4 * a * c;
+    var resultado;
+    var x1,x2;
+    if(delta>0){
+
+        x1=(-b+Math.sqrt(delta))/-2*a; 
+        x2=(-b-Math.sqrt(delta))/-2*a;
+        resultado = " Existe duas raizes reais "+x1+" e "+x2;
+
+    }else if(delta==0){
+        x1=(-b)/-2*a; 
+        
+        resultado = " Existe uma raiz real "+x1;
+    }else{
+        resultado = "Não existe raizes reais";
+
+    }
+
+    $("#resposta").val(resultado);
+   
+   
+   
+    // Session.set("resultado", " TESTE Resolver é com vocês :) !!!!!!");
 }
